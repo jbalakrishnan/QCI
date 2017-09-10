@@ -659,7 +659,7 @@ class HyperellipticCurve_generic(plane_curve.ProjectivePlaneCurve):
 
         w = [x**i*xprime/(2*y) for i in range(2*g)]
         wint = [(w[i]).integral() for i in range(2*g)]
-        B = matrix(self.base_ring(), 2*g,2*g, [(w[j]*wint[i]).residue_at_zero() for i in range(2*g) for j in range(2*g)])
+        B = matrix(self.base_ring(), 2*g,2*g, [(w[j]*wint[i]).residue() for i in range(2*g) for j in range(2*g)])
         return B
 
     def finite_weierstrass_points(self):
