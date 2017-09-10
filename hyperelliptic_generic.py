@@ -554,14 +554,18 @@ class HyperellipticCurve_generic(plane_curve.ProjectivePlaneCurve):
         """
         g = self.genus()
         pol = self.hyperelliptic_polynomials()[0]
-        K = LaurentSeriesRing(self.base_ring(), name, default_prec=prec+2)
+        K = LaurentSeriesRing(self.base_ring(), name)
         t = K.gen()
+        K.set_default_prec(prec+2)
         L = PolynomialRing(self.base_ring(),'x')
         x = L.gen()
         i = 0
         w = (x**g/t)**2-pol
         wprime = w.derivative(x)
-        x = t**-2
+        if pol.degree() == 2*g+1:
+            x = t**-2
+        else:
+            x = t**-1
         for i in range((RR(log(prec+2)/log(2))).ceil()):
             x = x-w(x)/wprime(x)
         y = x**g/t
