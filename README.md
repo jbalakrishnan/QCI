@@ -2,7 +2,7 @@
 
 Sage code to carry out Example 1 (Section 8.3) in 
 
-``Quadratic Chabauty and rational points I: $p$-adic heights'' (Jennifer S. Balakrishnan and Netan Dogra)
+"Quadratic Chabauty and rational points I: $p$-adic heights" (Jennifer S. Balakrishnan and Netan Dogra)
 
 The main file is Ex1.sage. 
 
