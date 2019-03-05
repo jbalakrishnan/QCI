@@ -2218,6 +2218,24 @@ class HyperellipticCurve_padic_field(hyperelliptic_generic.HyperellipticCurve_ge
                 sum = sum+ v[i]*w[j]*M[i,j]
         return sum
 
+    def local_analytic_interpolation_cyclotomic(self,P,Q,prec=100):
+        """
+        Given P and x(Q), with P,Q
+        in the same residue disc and P defined over Qp,
+        this computes the local analytic interpolation
+        between P,Q
+
+        USE: for non-weierstrass points
+        """
+        #print "local_analytic_interpolation_cyclotomic", prec
+        R = Q.parent()[['t']]
+        t = R.gen()
+        R.set_default_prec(prec)
+        x,y = self.local_coord(P,prec)      #figure out precision here
+        X = (x(R((Q-P[0])*t)))
+        Y = (y(R((Q-P[0])*t)))
+        return X,Y
+
     def tiny_integrals_on_basis_to_z(self,b):
         """
         Returns all tiny integrals on basis to a parameter z
