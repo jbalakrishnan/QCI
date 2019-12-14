@@ -203,7 +203,7 @@ def solver(X, XK, pt, xx, yy, rho_z, T):
     points=[]
     D2zunshift = rho_z
     for c in T:
-        print 'beta = ', c
+        print('beta = ', c)
         D2z = D2zunshift - c
         val = min([x.valuation() for x in D2z.list()])
         D2z = D2z*p**(-val)
@@ -233,26 +233,26 @@ def solver(X, XK, pt, xx, yy, rho_z, T):
                 r = XK(xx(r),yy(r))
                 try:
                     Xpt = X(r[0],r[1])
-                    print 'Found point on X: ', Xpt
+                    ('Found point on X: ', Xpt)
                     points = points + [Xpt]
                 except TypeError:
-                    print 'Found point on X: ', r
+                    print('Found point on X: ', r)
                     points = points + [r]
             elif pt[1] == 0:
-                print 'Finite Weierstrass case! Note that the example curve and prime did not run into this case.'
+                print('Finite Weierstrass case! Note that the example curve and prime did not run into this case.')
             else:
                 #this is the disk at infinity
                 if r != 0:
                     try:
                         Xpt = X(xx(r),yy(r))
-                        print 'Found point on X: ', Xpt
+                        print('Found point on X: ', Xpt)
                         points = points + [Xpt]
                     except (TypeError, ValueError):
                         Xpt = XK(xx(r),yy(r))
-                        print 'Found point on X: ', Xpt
+                        print('Found point on X: ', Xpt)
                         points = points + [Xpt]
                 else:
-                    print 'Found point on X: (1: 1: 0)'
+                    print('Found point on X: (1: 1: 0)')
                     points = points + ['infty']
     return points
 
@@ -322,7 +322,7 @@ def qcb(X, E1, E2, H1K, H2K, T0list, Tnot0list, p, prec):
     for P in D0:
         Ito01 = H2K.coleman_integrals_on_basis(H2K(0,1,0),H2K(0,1))[0]
         if P[1] == 0:
-            print 'Note: the example curve did not have any Weierstrass disks! If you end up here, add Weierstrass local coordinates!'
+            print('Note: the example curve did not have any Weierstrass disks! If you end up here, add Weierstrass local coordinates!')
         Q = find_Q(XK,P)
         xx,yy = XK.local_coord(Q)
         f2plus = X_to_E2map_plus(Q,E2K)
@@ -402,7 +402,7 @@ def qcb(X, E1, E2, H1K, H2K, T0list, Tnot0list, p, prec):
     for P in D:
         Ito01 = H1K.coleman_integrals_on_basis(H1K(0,1,0),H1K(0,1))[0]
         if P[1] == 0:
-            print 'Note: the example curve did not have any finite Weierstrass disks! If you end up here, add Weierstrass local coordinates!'
+            print('Note: the example curve did not have any finite Weierstrass disks! If you end up here, add Weierstrass local coordinates!')
         if P[2] != 0:
             Q = find_Q(XK,P)
             xx,yy = XK.local_coord(Q)
@@ -506,4 +506,4 @@ E2 = EllipticCurve([0,b,0,a,1])
 E1K = HyperellipticCurve(x^3 + a*x^2 + b*x + 1).change_ring(K)
 E2K = HyperellipticCurve(x^3 + b*x^2 + a*x + 1).change_ring(K)
 points = qcb(X,E1,E2,E1K,E2K,[-8/3*log(K(2)), -4/3*log(K(2))],[0, 4/3*log(K(2))], p, prec)
-print "These are all of the found points (up to sign): ", points
+print("These are all of the found points (up to sign): ", points)
